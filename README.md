@@ -71,4 +71,8 @@ now you can run you server! to run you server, execute the command
 ```bash
 java -Xms512M -Xmx1G -jar server.jar nogui
 ```
-## (notice that you have to replace the numbers on -Xms512M and -Xmx1G of the number of ram you want do allocate and replace the server.jar with the name of the .jar file of the server)
+(notice that you have to replace the numbers on -Xms512M and -Xmx1G of the number of ram you want do allocate and replace the server.jar with the name of the .jar file of the server)
+
+# Play with friends 
+want to play with friends on your server?
+check out [this guide](TUNNELING.md)
