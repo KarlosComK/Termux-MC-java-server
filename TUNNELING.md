@@ -18,11 +18,11 @@ cd server
 # Step 2
 When you enter the server directory, execute this command to install Playit.gg if your device is 64bit
 ```bash
-wget https://github.com/playit-cloud/playit-agent/releases/download/v1.0.2/playit-linux-aarch64
+wget https://github.com/playit-cloud/playit-agent/releases/download/v0.17.0/playit-linux-aarch64
 ``` 
 or this command if you device is 32bit
 ```bash
-wget https://builds.playit.gg/1.0.3/playit-linux-armv7
+wget https://github.com/playit-cloud/playit-agent/releases/download/v0.17.0/playit-linux-armv7
 ```
 
 # Step 3
