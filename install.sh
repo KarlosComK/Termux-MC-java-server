@@ -1,6 +1,9 @@
+# script made by karloscomk:)
+
 echo "====================================="
 echo "== WELCOME TO THE SERVER INSTALLER =="
 echo "====================================="
+echo "======= MADE BY KARLOSCOMK! ========="
 
 echo "UPDATING THE REPOSITORIES AND UPGRADING PACKAGES..."
 
@@ -33,18 +36,23 @@ case $TYPE in
         read -p "Paste the Vanilla version link: " LINK
         if [ -z "$LINK" ]; then
             echo "ERROR: Link cannot be empty!"
-            sleep
+            sleep 3
             exit 1
         fi
 
-        if echo "$LINK" | grep -Ei "forge|fabric|neoforge|quilt|purpur|paper|bukkit|spigot" > /dev/null; then
+        if ! echo "$LINK" | grep -Ei "\.jar" > /dev/null; then
+            echo -e "\nERROR: Invalid link! The URL must be a direct link to a .jar file."
+            sleep 3
+            exit 1
+        elif echo "$LINK" | grep -Ei "forge|fabric|neoforge|quilt|purpur|paper|bukkit|spigot" > /dev/null; then
             echo -e "\nERROR: You selected VANILLA, but pasted a mod/plugin loader link!"
             sleep 3
+            exit 1
         else
             echo -e "\nLink validated! Downloading Vanilla $VERSION"
             curl -L -o server.jar "$LINK"
         fi
-        ;; 
+        ;;
 
 
      2)
@@ -55,7 +63,7 @@ case $TYPE in
         read -p "Paste the Modloader version link: " LINK
         if [ -z "$LINK" ]; then
             echo "ERROR: Link cannot be empty!"
-            sleep 1
+            sleep 3
             exit 1
         fi
 
@@ -65,6 +73,7 @@ case $TYPE in
         else
             echo -e "\nERROR: invalid link! Make sure it is a modloader link and matches version $VERSION."
             sleep 3
+            exit 1
         fi
         ;;
 
@@ -76,7 +85,7 @@ case $TYPE in
         read -p "Paste the Pluginloader version link: " LINK
         if [ -z "$LINK" ]; then
             echo "ERROR: Link cannot be empty!"
-            sleep 1
+            sleep 3
             exit 1
         fi
 
@@ -86,6 +95,7 @@ case $TYPE in
         else
             echo -e "\nERROR: invalid link! Make sure it is a modloader link and matches version $VERSION"
             sleep 3
+            exit 1
         fi
         ;;
 
@@ -96,6 +106,7 @@ case $TYPE in
 esac
 
 echo -e "\nGenerating server configuration files..."
+
 sleep 1
 
 echo "eula=true" > eula.txt
