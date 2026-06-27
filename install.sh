@@ -65,16 +65,33 @@ case $TYPE in
             echo "ERROR: Link cannot be empty!"
             sleep 3
             exit 1
+
         fi
 
         if echo "$LINK" | grep -Ei "forge|fabric|neoforge|quilt" > /dev/null && echo "$LINK" | grep -F "$VERSION" > /dev/null; then
-            echo -e "\nLink validated! Downloading modloader $VERSION"
-            curl -L -o server.jar "$LINK"
-        else
-            echo -e "\nERROR: invalid link! Make sure it is a modloader link and matches version $VERSION."
-            sleep 3
-            exit 1
-        fi
+    echo -e "\nLink validated! Downloading modloader $VERSION"
+    curl -L -o installer.jar "$LINK"
+
+    if echo "$LINK" | grep -Ei "forge|neoforge" > /dev/null; then
+        echo "Forge/NeoForge detected. Running server installer..."
+        java -jar installer.jar --installServer
+
+    elif echo "$LINK" | grep -Ei "fabric" > /dev/null; then
+        echo "Installing Fabric server..."
+        java -jar installer.jar server -mcversion "$VERSION" -downloadMinecraft
+
+    elif echo "$LINK" | grep -Ei "quilt" > /dev/null; then
+        echo "Installing Quilt server..."
+        java -jar installer.jar install server "$VERSION" -download-server
+    fi
+
+    rm installer.jar
+
+else
+    echo -e "\nERROR: invalid link! Make sure it is a modloader link and matches version $VERSION."
+    sleep 3
+    exit 1
+fi
         ;;
 
      3)
