@@ -7,10 +7,9 @@ sleep 3
 echo "UPGRADING PACKAGES AND UPDATING REPOSITORIES"
 
 pkg update -y && pkg upgrade -y
+
+echo "INSTALLING DEPENDENCIES"
+
 pkg install wget curl nano -y
-
-echo "INSTALLING OPENJDK 8 FOR MC VERSIONS BELOW 1.17"
-
-wget https://raw.githubusercontent.com/MasterDevX/java/master/installjava && bash installjava
 
 echo "INSTALLATION COMPLETE"
